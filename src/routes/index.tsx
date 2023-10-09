@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "../layouts/home";
-import React from "react";
+import { MatchesProvider } from "../context/matches/context";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomeLayout />
+    element: (
+      <MatchesProvider>
+        <HomeLayout />
+      </MatchesProvider>
+    )
   },
 ])
 
