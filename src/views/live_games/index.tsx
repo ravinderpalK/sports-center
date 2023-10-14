@@ -4,7 +4,7 @@ import LiveGamesList from "./LiveGamesList";
 const LiveGames: React.FC = () => {
   return (
     <div>
-      <h1>Live Games</h1>
+      <h2>Live Games</h2>
       <LiveGamesList />
     </div>
   )
