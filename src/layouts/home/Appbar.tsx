@@ -1,7 +1,9 @@
 import { Disclosure } from "@headlessui/react";
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 const Appbar: React.FC = () => {
+  const isLoggedIn = !!localStorage.getItem("authToken");
   return (
     <div>
       <div className="text-2xl text-gray-800 relative mx-auto max-w-full p-2 bg-gray-100 flex justify-center">
@@ -25,8 +27,16 @@ const Appbar: React.FC = () => {
               </button>
             </Disclosure.Button>
             <Disclosure.Panel as="ul" className={`absolute text-base right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transform opacity-100 scale-100`}>
-              <li className="block px-4 py-2 text-sm text-gray-700">Sign In</li>
-              <li className="block px-4 py-2 text-sm text-gray-700">Profile</li>
+              {isLoggedIn ? (
+                <li className="block px-4 py-2 text-sm text-gray-700">
+                  <Link to={`/signout`}>Sign Out</Link>
+                </li>
+              ) :
+                (
+                  <li className="block px-4 py-2 text-sm text-gray-700">
+                    <Link to={`/signin`}>Sign In</Link>
+                  </li>
+                )}
             </Disclosure.Panel>
           </Disclosure>
         </div>
