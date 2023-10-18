@@ -1,18 +1,18 @@
 import React from "react"
 import LiveGames from "../../views/live_games";
 import Articles from "../../views/articles";
-import Filter from "../../views/filter";
+import Filter from "../../views/filtered_articles";
 
 const HomePageContainer: React.FC = () => {
   return (
     <div className="mx-6">
       <LiveGames />
-      <h2>Trending News</h2>
-      <div className="flex">
-        <div className="w-4/5 border-2">
+      <h2 className="font-bold text-xl">Trending News</h2>
+      <div className="flex mt-2">
+        <div className="w-4/5 bg-gray-100">
           <Articles />
         </div>
-        <div className="border-2 w-1/5">
+        <div className="w-1/5 bg-gray-200">
           <Filter />
         </div>
       </div>

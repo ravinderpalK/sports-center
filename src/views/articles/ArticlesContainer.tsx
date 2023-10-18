@@ -16,10 +16,10 @@ const ArticlesContainer: React.FC = () => {
     <div >
       <Tab.Group>
         <Tab.List>
-          <Tab className={({ selected }) => `${selected ? 'border-indigo-600 text-indigo-600' : ' text-gray-900'} 'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'`}>
+          <Tab className={({ selected }) => `${selected ? 'border-indigo-600 text-indigo-600' : ' text-gray-900'} 'flex-1 w-44 whitespace-nowrap border-b-2 px-1 py-1 text-base font-medium'`}>
             All News
           </Tab>
-          <Tab className={({ selected }) => `${selected ? 'border-indigo-600 text-indigo-600' : ' text-gray-900'} 'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'`}>
+          <Tab className={({ selected }) => `${selected ? 'border-indigo-600 text-indigo-600' : ' text-gray-900'} 'flex-1 w-44 whitespace-nowrap border-b-2 px-1 py-1 text-base font-medium'`}>
             Cricket
           </Tab>
         </Tab.List>
