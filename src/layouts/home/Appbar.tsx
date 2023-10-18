@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 const Appbar: React.FC = () => {
   return (
     <div>
-      <div className="text-2xl text-gray-800 relative mx-auto max-w-full p-3 bg-gray-100 flex justify-center">
+      <div className="text-2xl text-gray-800 relative mx-auto max-w-full p-2 bg-gray-100 flex justify-center">
         <div>
           <h1 className="font-bold">Sports Center</h1>
         </div>

@@ -5,12 +5,14 @@ import HomePageContainer from "./HomePageContainer";
 
 const HomeLayout: React.FC = () => {
   return (
-    <>
-      <Appbar />
-      <main>
+    <div className="h-screen">
+      <div className="">
+        <Appbar />
+      </div>
+      <div className="">
         <HomePageContainer />
-      </main>
-    </>
+      </div>
+    </div>
   )
 }
 

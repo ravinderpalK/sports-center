@@ -2,7 +2,7 @@ import ArticlesContainer from "./ArticlesContainer";
 
 const Articles: React.FC = () => {
   return (
-    <div>
+    <div className="m-4">
       <ArticlesContainer />
     </div>
   )

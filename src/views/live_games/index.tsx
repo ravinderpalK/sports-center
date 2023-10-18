@@ -1,12 +1,12 @@
 import React from "react";
-import LiveGamesList from "./LiveGamesList";
+import LiveGamesContainer from "./LiveGamesContainer";
 
 const LiveGames: React.FC = () => {
   return (
-    <div>
-      <h2>Live Games</h2>
-      <LiveGamesList />
-    </div>
+    <div >
+      <h2 className="text-xl font-bold mt-2">Live Games</h2>
+      <LiveGamesContainer />
+    </div >
   )
 }
 
