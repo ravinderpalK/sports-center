@@ -15,8 +15,8 @@ const Filter: React.FC = () => {
   }, [teamsDispatch, sportsDispatch]);
 
   return (
-    <div>
-      <h3>Favourities</h3>
+    <div className="my-4 mx-4">
+      <h3 className="font-bold py-2">Favourities</h3>
       <SportAndTeamSelector />
     </div>
   )
