@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Sport {
+export interface Sport {
   id: number;
   name: string;
 }
