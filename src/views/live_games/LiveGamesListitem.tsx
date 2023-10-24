@@ -1,10 +1,34 @@
+import { useState } from "react";
+import { API_ENDPOINT } from "../../config/constants";
+import { Match } from "../../context/matches/types";
 
 
 const LiveGamesListItem = (props: any) => {
-  const { match } = props;
-  const refreshScores = (id: number) => {
+  const [match, setMatch] = useState<Match>(props.match);
+  const [isLoading, setIsLoading] = useState<Boolean>(false);
 
+  const refreshScores = async (id: number) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${API_ENDPOINT}/matches/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      if (!response)
+        throw new Error("fetch matches failure");
+
+      const data = await response.json();
+      setMatch(data);
+      setIsLoading(false);
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
+
+  if (isLoading)
+    return <div className="border-2 rounded mr-6 my-2 h-28 w-64 p-2 bg-gray-100">Loading..</div>;
+
   return (
     <div className="relative border-2 rounded mr-6 my-2 h-28 w-64 p-2 bg-gray-100">
       <div className="font-semibold">{match.sportName}</div>
