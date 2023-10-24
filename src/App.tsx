@@ -4,6 +4,7 @@ import { MatchesProvider } from "./context/matches/context"
 import { ArticlesProvider } from "./context/articles/context"
 import { TeamsProvider } from "./context/teams/context"
 import { SportsProvider } from "./context/sports/context"
+import { PrefrencesProvider } from "./context/user_prefrences/context"
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
         <ArticlesProvider>
           <TeamsProvider>
             <SportsProvider>
-              <RouterProvider router={router} />
+              <PrefrencesProvider>
+                <RouterProvider router={router} />
+              </PrefrencesProvider>
             </SportsProvider>
           </TeamsProvider>
         </ArticlesProvider>
