@@ -46,7 +46,7 @@ const Appbar: React.FC = () => {
                   <div className="fixed inset-0 bg-black/30" />
                 </Transition.Child>
                 <div className="fixed inset-0 overflow-y-auto">
-                  <Prefrences />
+                  <Prefrences setIsOpen={setIsOpen} />
                 </div>
               </Dialog>
             </Transition>

@@ -10,7 +10,8 @@ type Inputs = {
   teams: string[];
 }
 
-const PreferedSportsAndTeams: React.FC = () => {
+const PreferedSportsAndTeams = (props: any) => {
+  const { setIsOpen } = props;
   const sportsState = useSportState();
   const teamsState = useTeamsState();
   const allSports = sportsState.sports;
@@ -29,7 +30,9 @@ const PreferedSportsAndTeams: React.FC = () => {
       preferences: data,
     }
     updatePrefrences(prefrencesDispatch, user_prefrences);
+    setIsOpen(false);
   }
+
   return (
     <form className="m-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="text-left">
@@ -54,7 +57,7 @@ const PreferedSportsAndTeams: React.FC = () => {
           ))}
         </div>
         <div className="mt-8 float-right">
-          <button type="submit" className="bg-gray-600 text-white px-3 py-1 rounded">Save</button>
+          <button type="submit" className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded ">Save</button>
         </div>
       </div>
     </form>
