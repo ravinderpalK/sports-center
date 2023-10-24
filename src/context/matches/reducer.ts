@@ -10,18 +10,18 @@ export const initialMatchesState: MatchesState = {
 
 export const matchesReducer: Reducer<MatchesState, MatchesActions> = (state = initialMatchesState, action): MatchesState => {
   switch (action.type) {
-    case MatchesAvailableActions.FETCH_MATCHES_REQUEST:
+    case MatchesAvailableActions.FETCH_ALL_MATCHES_REQUEST:
       return {
         ...state,
         isLoading: true
       };
-    case MatchesAvailableActions.FETCH_MATCHES_SUCCESS:
+    case MatchesAvailableActions.FETCH_ALL_MATCHES_SUCCESS:
       return {
         ...state,
         isLoading: false,
         matches: action.payload,
       };
-    case MatchesAvailableActions.FETCH_MATCHES_FAILURE:
+    case MatchesAvailableActions.FETCH_ALL_MATCHES_FAILURE:
       return {
         ...state,
         isError: true,

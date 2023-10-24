@@ -28,9 +28,9 @@ export interface MatchesState {
 }
 
 export enum MatchesAvailableActions {
-  FETCH_MATCHES_REQUEST = "FETCH_ALL_MATCHES_REQUEST",
-  FETCH_MATCHES_SUCCESS = "FETCH_ALL_MATCHES_SUCCESS",
-  FETCH_MATCHES_FAILURE = "FETCH_ALL_MATCHES_FAILURE",
+  FETCH_ALL_MATCHES_REQUEST = "FETCH_ALL_MATCHES_REQUEST",
+  FETCH_ALL_MATCHES_SUCCESS = "FETCH_ALL_MATCHES_SUCCESS",
+  FETCH_ALL_MATCHES_FAILURE = "FETCH_ALL_MATCHES_FAILURE",
 
   FETCH_MATCH_REQUEST = "FETCH_MATCH_REQUEST",
   FETCH_MATCH_SUCCESS = "FETCH_MATCH_SUCCESS",
@@ -38,12 +38,12 @@ export enum MatchesAvailableActions {
 }
 
 export type MatchesActions =
-  { type: MatchesAvailableActions.FETCH_MATCHES_REQUEST } |
-  { type: MatchesAvailableActions.FETCH_MATCHES_SUCCESS, payload: Match[] } |
-  { type: MatchesAvailableActions.FETCH_MATCHES_FAILURE, payload: string } |
+  { type: MatchesAvailableActions.FETCH_ALL_MATCHES_REQUEST } |
+  { type: MatchesAvailableActions.FETCH_ALL_MATCHES_SUCCESS, payload: Match[] } |
+  { type: MatchesAvailableActions.FETCH_ALL_MATCHES_FAILURE, payload: string } |
 
   { type: MatchesAvailableActions.FETCH_MATCH_REQUEST } |
-  { type: MatchesAvailableActions.FETCH_MATCH_SUCCESS, payload: Match } |
+  { type: MatchesAvailableActions.FETCH_MATCH_SUCCESS } |
   { type: MatchesAvailableActions.FETCH_MATCH_FAILURE, payload: string };
 
 

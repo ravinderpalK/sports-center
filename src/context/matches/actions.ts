@@ -2,7 +2,7 @@ import { MatchesAvailableActions, MatchesDispatch } from "./types";
 import { API_ENDPOINT } from "../../config/constants";
 export const fetchAllMatches = async (dispatch: MatchesDispatch) => {
   try {
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCHES_REQUEST });
+    dispatch({ type: MatchesAvailableActions.FETCH_ALL_MATCHES_REQUEST });
     const response = await fetch(`${API_ENDPOINT}/matches`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
@@ -11,17 +11,17 @@ export const fetchAllMatches = async (dispatch: MatchesDispatch) => {
       throw new Error("fetch matches failure");
 
     const data = await response.json();
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCHES_SUCCESS, payload: data.matches });
+    dispatch({ type: MatchesAvailableActions.FETCH_ALL_MATCHES_SUCCESS, payload: data.matches });
   }
   catch (error) {
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCHES_FAILURE, payload: "error in fetching matches" })
+    dispatch({ type: MatchesAvailableActions.FETCH_ALL_MATCHES_FAILURE, payload: "error in fetching matches" })
     console.log(error);
   }
 }
 
 export const fetchMatchDetails = async (dispatch: MatchesDispatch, id: number) => {
   try {
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCHES_REQUEST });
+    dispatch({ type: MatchesAvailableActions.FETCH_MATCH_REQUEST });
     const response = await fetch(`${API_ENDPOINT}/matches/${id}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
@@ -30,13 +30,17 @@ export const fetchMatchDetails = async (dispatch: MatchesDispatch, id: number) =
       throw new Error("fetch matches failure");
 
     const data = await response.json();
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCH_SUCCESS, payload: data });
-    return data;
+    dispatch({ type: MatchesAvailableActions.FETCH_MATCH_SUCCESS });
+    return { ok: true, data: data };
   }
   catch (error) {
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCHES_FAILURE, payload: "error in fetching matches" })
+    dispatch({ type: MatchesAvailableActions.FETCH_MATCH_FAILURE, payload: "error in fetching matches" })
     console.log(error);
+    return { ok: false }
   }
 }
+
+
+
 
 
