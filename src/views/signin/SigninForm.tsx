@@ -1,4 +1,4 @@
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form";
 import { API_ENDPOINT } from "../../config/constants";
 import { useNavigate } from "react-router-dom";
 
@@ -24,11 +24,11 @@ const SigninForm: React.FC = () => {
       }
       console.log('Sign-in successful');
       const data = await response.json();
-      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('authToken', data.auth_token);
       localStorage.setItem('userData', JSON.stringify(data.user));
       navigate("/");
     } catch (error) {
-      console.error('Sign-in failed:', error);
+      console.log('Sign-in failed:', error);
     }
   }
   return (
