@@ -19,7 +19,6 @@ const SportAndTeamSelector: React.FC = () => {
     setSelectedSport(e.target.value);
   }
   const selectedSportTeams = getTeamsBySport(selectedSport);
-  console.log(selectedSportTeams[0]?.name);
   let initialSelectedTeam = selectedSportTeams[0]?.name;
 
   const handleTeamChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
