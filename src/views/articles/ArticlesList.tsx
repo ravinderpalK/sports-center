@@ -1,4 +1,5 @@
 import { useArticlesState } from "../../context/articles/context";
+import ArticleDetails from "./ArticleDetails";
 
 const ArticlesList: React.FC = () => {
   const articlesState = useArticlesState();
@@ -27,7 +28,7 @@ const ArticlesList: React.FC = () => {
                 <div className="line-clamp-2">{article.summary}</div>
                 <div>{formatDate(article.date)}</div>
               </div>
-              <button className="absolute bottom-2 right-2">Read More</button>
+              <ArticleDetails id={article.id} />
             </div>
             <div className="inline-block w-1/4 h-full">
               <img src={article.thumbnail} className="w-full h-full" />
