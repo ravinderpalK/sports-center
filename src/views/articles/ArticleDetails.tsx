@@ -67,6 +67,7 @@ export const fetchArticleDetails = async (dispatch: ArticleDetailsDispatch, id: 
       throw new Error("fetch articles failed");
 
     const data = await response.json();
+    console.log(data.id);
     dispatch({ type: ArticleDetailsAvailableAction.FETCH_ARTICLES_DETAILS_SUCCESS, payload: data })
   }
   catch (error) {
@@ -77,7 +78,7 @@ export const fetchArticleDetails = async (dispatch: ArticleDetailsDispatch, id: 
 }
 
 const ArticleDetails: React.FC<ArticleProps> = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const [state, dispatch] = useReducer(reducer, initialArticlesDetails);
 
@@ -88,11 +89,10 @@ const ArticleDetails: React.FC<ArticleProps> = (props) => {
       await fetchArticleDetails(dispatch, props.id);
     }
     getDetailedArticle();
-  }, [article]);
+  }, []);
 
   return (
     <div className="w-full">
-      <button onClick={() => setIsOpen(true)} className="absolute bottom-2 right-2">Read More</button>
       <Transition show={isOpen} as={Fragment}>
         <Dialog onClose={() => setIsOpen(false)}>
 
