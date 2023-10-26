@@ -22,7 +22,7 @@ const ArticlesListitem = (props: any) => {
         </div>
         <button onClick={() => setIsOpen(true)} className="absolute bottom-2 right-2">Read More</button>
         {isOpen && (
-          <ArticleDetails id={article.id} />
+          <ArticleDetails id={article.id} isOpen={isOpen} setIsOpen={setIsOpen} />
         )}
       </div>
       <div className="inline-block w-1/4 h-full">

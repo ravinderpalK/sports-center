@@ -8,6 +8,7 @@ import { fetchArticles } from "../../context/articles/actions";
 const ArticlesContainer: React.FC = () => {
 
   const articlesDispatch = useArticlesDispatch();
+
   useEffect(() => {
     fetchArticles(articlesDispatch);
   }, [articlesDispatch]);

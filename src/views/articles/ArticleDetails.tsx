@@ -1,10 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, Reducer, useEffect, useReducer, useState } from "react";
+import React, { Fragment, Reducer, useEffect, useReducer } from "react";
 import { Article } from "../../context/articles/types";
 import { API_ENDPOINT } from "../../config/constants";
 
 interface ArticleProps {
   id: number,
+  isOpen: any,
+  setIsOpen: any,
 }
 
 interface ArticleDetailsState {
@@ -78,15 +80,15 @@ export const fetchArticleDetails = async (dispatch: ArticleDetailsDispatch, id: 
 }
 
 const ArticleDetails: React.FC<ArticleProps> = (props) => {
-  const [isOpen, setIsOpen] = useState(true);
 
   const [state, dispatch] = useReducer(reducer, initialArticlesDetails);
-
   const { article } = state;
+
+  const { id, isOpen, setIsOpen } = props;
 
   useEffect(() => {
     const getDetailedArticle = async () => {
-      await fetchArticleDetails(dispatch, props.id);
+      await fetchArticleDetails(dispatch, id);
     }
     getDetailedArticle();
   }, []);
@@ -118,9 +120,8 @@ const ArticleDetails: React.FC<ArticleProps> = (props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-
-                <Dialog.Panel className="mx-auto max-w-2xl h-full p-4 rounded bg-white">
-                  {article && (
+                {article ? (
+                  <Dialog.Panel className="mx-auto max-w-2xl h-full p-4 rounded bg-white">
                     <div className="h-full   overflow-y-scroll no-scrollbar">
                       <div className="my-2 font-semibold text-gray-900 text-lg">{article.title}</div>
                       <div className="h-1/3 my-2">
@@ -130,8 +131,13 @@ const ArticleDetails: React.FC<ArticleProps> = (props) => {
                         <p >{article.content}</p>
                       </div>
                     </div>
-                  )}
-                </Dialog.Panel>
+                  </Dialog.Panel>
+                ) : (
+                  <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 animate-spin">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                  </svg>
+                  </span>
+                )}
               </Transition.Child>
             </div>
           </div>
