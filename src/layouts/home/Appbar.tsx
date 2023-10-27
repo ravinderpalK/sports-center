@@ -1,6 +1,6 @@
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import React, { Fragment, useState } from "react";
-import Prefrences from "../../views/prefrences";
+import Prefrences from "../../views/preferences";
 
 const Appbar: React.FC = () => {
   const isAuthenticated = !!localStorage.getItem("authToken");

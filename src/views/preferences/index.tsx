@@ -1,20 +1,21 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import PreferedSportsAndTeams from "./PreferedSportsAndTeams";
-import { fetchPrefrences } from "../../context/user_prefrences/actions";
-import { usePrefrencesDispatch, usePrefrencesState } from "../../context/user_prefrences/context";
+import { fetchPreferences } from "../../context/user_preferences/actions";
+import { usePreferencesDispatch, usePreferencesState } from "../../context/user_preferences/context";
 
 
 const Prefrences = (props: any) => {
   const { setIsOpen } = props;
-  const prefrencesDispatch = usePrefrencesDispatch();
-  const prefrencesState = usePrefrencesState();
+  const prefrencesDispatch = usePreferencesDispatch();
+  const preferencesState = usePreferencesState();
+
   useEffect(() => {
-    fetchPrefrences(prefrencesDispatch);
+    fetchPreferences(prefrencesDispatch);
   }, [prefrencesDispatch]);
 
-  if (prefrencesState.isLoading)
-    return <div>Loading</div>
+  if (preferencesState.isLoading)
+    return <div className="h-full flex justify-center items-center">Loading</div>
 
   return (
     <div className="flex min-h-full items-center justify-center p-4 text-center h-screen">
@@ -28,7 +29,7 @@ const Prefrences = (props: any) => {
         leaveTo="opacity-0 scale-95"
       >
         <Dialog.Panel className={`w-3/5 bg-white overflow-auto p-8 rounded-2`}>
-          <Dialog.Title as="h1" className="text-2xl font-bold leading-6 text-gray-900">Prefrences</Dialog.Title>
+          <Dialog.Title className="text-2xl font-bold leading-6 text-gray-900">Prefrences</Dialog.Title>
           <PreferedSportsAndTeams setIsOpen={setIsOpen} />
         </Dialog.Panel>
       </Transition.Child>

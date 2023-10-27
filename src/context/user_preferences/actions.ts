@@ -1,10 +1,10 @@
 import { API_ENDPOINT } from "../../config/constants";
-import { PrefrencesAvailableActions, PrefrencesDispatch } from "./types";
+import { PreferencesAvailableActions, PreferencesDispatch } from "./types";
 
-export const fetchPrefrences = async (dispatch: PrefrencesDispatch) => {
+export const fetchPreferences = async (dispatch: PreferencesDispatch) => {
   const token = localStorage.getItem("authToken") ?? "";
   try {
-    dispatch({ type: PrefrencesAvailableActions.FETCH_PREFRENCES_REQUEST });
+    dispatch({ type: PreferencesAvailableActions.FETCH_PREFERENCES_REQUEST });
     const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
       method: "GET",
       headers: {
@@ -17,18 +17,18 @@ export const fetchPrefrences = async (dispatch: PrefrencesDispatch) => {
       throw new Error("cannot fetch user prefrences");
 
     const data = await response.json();
-    dispatch({ type: PrefrencesAvailableActions.FETCH_PREFRENCES_SUCCESS, payload: data.preferences });
+    dispatch({ type: PreferencesAvailableActions.FETCH_PREFERENCES_SUCCESS, payload: data.preferences });
   }
   catch (error) {
     console.log(error);
-    dispatch({ type: PrefrencesAvailableActions.FETCH_PREFRENCES_FAILURE, payload: "unable to fetch user prefrences" });
+    dispatch({ type: PreferencesAvailableActions.FETCH_PREFERENCES_FAILURE, payload: "unable to fetch user prefrences" });
   }
 }
 
-export const updatePrefrences = async (dispatch: PrefrencesDispatch, prefrences: any) => {
+export const updatePreferences = async (dispatch: PreferencesDispatch, prefrences: any) => {
   const token = localStorage.getItem("authToken") ?? "";
   try {
-    dispatch({ type: PrefrencesAvailableActions.UPDATE_PREFRENCES_REQUEST });
+    dispatch({ type: PreferencesAvailableActions.UPDATE_PREFERENCES_REQUEST });
     const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
       method: "PATCH",
       headers: {
@@ -40,10 +40,11 @@ export const updatePrefrences = async (dispatch: PrefrencesDispatch, prefrences:
 
     if (!response)
       throw new Error("cannot fetch user prefrences");
-    dispatch({ type: PrefrencesAvailableActions.UPDATE_PREFRENCES_SUCCESS });
+    fetchPreferences(dispatch);
+    dispatch({ type: PreferencesAvailableActions.UPDATE_PREFERENCES_SUCCESS });
   }
   catch (error) {
     console.log(error);
-    dispatch({ type: PrefrencesAvailableActions.FETCH_PREFRENCES_FAILURE, payload: "failed to update user prefrences" });
+    dispatch({ type: PreferencesAvailableActions.FETCH_PREFERENCES_FAILURE, payload: "failed to update user prefrences" });
   }
 }

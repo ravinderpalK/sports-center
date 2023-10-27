@@ -2,8 +2,8 @@ import React from "react";
 import { useSportState } from "../../context/sports/context";
 import { useTeamsState } from "../../context/teams/context";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { usePrefrencesDispatch, usePrefrencesState } from "../../context/user_prefrences/context";
-import { updatePrefrences } from "../../context/user_prefrences/actions";
+import { usePreferencesDispatch, usePreferencesState } from "../../context/user_preferences/context";
+import { updatePreferences } from "../../context/user_preferences/actions";
 
 type Inputs = {
   sports: string[];
@@ -17,11 +17,11 @@ const PreferedSportsAndTeams = (props: any) => {
   const allSports = sportsState.sports;
   const allTeams = teamsState.teams;
 
-  const prefrencesState = usePrefrencesState();
-  const prefrencesDispatch = usePrefrencesDispatch();
+  const prefrencesState = usePreferencesState();
+  const prefrencesDispatch = usePreferencesDispatch();
 
-  let defaultSports = prefrencesState.prefrences.sports;
-  let defaultTeams = prefrencesState.prefrences.teams;
+  let defaultSports = prefrencesState.preferences.sports;
+  let defaultTeams = prefrencesState.preferences.teams;
 
   const { register, handleSubmit, formState: { errors }, } = useForm<Inputs>({ defaultValues: { sports: defaultSports, teams: defaultTeams } });
 
@@ -29,12 +29,12 @@ const PreferedSportsAndTeams = (props: any) => {
     const user_prefrences = {
       preferences: data,
     }
-    updatePrefrences(prefrencesDispatch, user_prefrences);
+    updatePreferences(prefrencesDispatch, user_prefrences);
     setIsOpen(false);
   }
 
   return (
-    <form className="m-4" onSubmit={handleSubmit(onSubmit)}>
+    <form className="m-4 " onSubmit={handleSubmit(onSubmit)}>
       <div className="text-left">
         <h2 className="text-xl font-bold">Favourite Sports</h2>
         <div className="grid grid-cols-3 gap-x-32">
