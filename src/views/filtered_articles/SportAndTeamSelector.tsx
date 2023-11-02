@@ -1,32 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { useSportState } from "../../context/sports/context";
 import { useTeamsState } from "../../context/teams/context";
-import FilteredArticles from "./FilteredArticles";
+import FilteredArticlesList from "./FilteredArticlesList";
+import { usePreferencesState } from "../../context/user_preferences/context";
+import { Team } from "../../context/teams/types";
 
 
 const SportAndTeamSelector: React.FC = () => {
   const sportsState = useSportState()
-  const { sports } = sportsState;
+  const teamsState = useTeamsState();
+  const preferencesState = usePreferencesState();
+  let { sports } = sportsState;
+  const { teams } = teamsState;
+  const { preferences } = preferencesState;
 
-  const [selectedSport, setSelectedSport] = useState<string>("Cricket");
+  const [selectedSport, setSelectedSport] = useState<string>(sports[0]?.name);
   const [selectedTeam, setSelectedTeam] = useState<string>("");
 
-  const teamsState = useTeamsState();
-  const { teams } = teamsState;
-  const getTeamsBySport = (sport: string) => teams.filter((team) => team.plays == sport);
+  const isAuthenticated = !!localStorage.getItem("authToken");
+  let selectedSportTeams: Team[];
+  if (isAuthenticated) {
+    if (preferences.sports) sports = sports.filter((sport) => preferences.sports?.includes(sport.name));
+    else sports = [];
+    selectedSportTeams = teams.filter((team) => team.plays == selectedSport);
+    if (preferences.teams) selectedSportTeams = selectedSportTeams.filter((team) => preferences.teams?.includes(team.name));
+    else selectedSportTeams = [];
+  }
+  else {
+    selectedSportTeams = teams.filter((team) => team.plays == selectedSport);
+  }
+
+  let initialSelectedTeam = selectedSportTeams[0]?.name;
+  useEffect(() => {
+    setSelectedTeam(initialSelectedTeam);
+  }, [initialSelectedTeam])
+
 
   const handleSportChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSport(e.target.value);
   }
-  const selectedSportTeams = getTeamsBySport(selectedSport);
-  let initialSelectedTeam = selectedSportTeams[0]?.name;
 
   const handleTeamChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTeam(e.target.value);
   }
-  useEffect(() => {
-    setSelectedTeam(initialSelectedTeam);
-  }, [initialSelectedTeam])
+
+  if (sports.length == 0)
+    return <div>Set Preferences</div>
+
+  if (sportsState.isLoading || teamsState.isLoading || preferencesState.isLoading)
+    return <div>Loading</div>
 
   return (
     <div>
@@ -51,7 +73,7 @@ const SportAndTeamSelector: React.FC = () => {
         </div>
       </div>
       <div>
-        <FilteredArticles selectedSport={selectedSport} selectedTeam={selectedTeam} />
+        <FilteredArticlesList selectedSport={selectedSport} selectedTeam={selectedTeam} />
       </div>
     </div>
   )

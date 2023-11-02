@@ -1,40 +1,28 @@
-import { useEffect, useState } from "react";
-import { useMatchesDispatch, useMatchesState } from "../../context/matches/context";
-import { fetchMatchDetails } from "../../context/matches/actions";
-import { Match, MatchesDispatch } from "../../context/matches/types";
+import { useMatchesState } from "../../context/matches/context";
+import { Match } from "../../context/matches/types";
+import { usePreferencesState } from "../../context/user_preferences/context";
 import LiveGamesListItem from "./LiveGamesListitem";
 
-const fetchLiveMatches = async (dispatch: MatchesDispatch, matches: Match[]): Promise<Match[]> => {
+const fetchLiveMatches = (matches: Match[]) => {
   const liveMatches = matches.filter((match) => match.isRunning != false);
-  const liveMatchesDetails = await Promise.all(
-    liveMatches.map(async (match) => {
-      const response = await fetchMatchDetails(dispatch, match.id);
-      if (!response.ok) return null;
-      return response.data;
-    })
-  );
-  return liveMatchesDetails;
+  return liveMatches;
 }
 
 const LiveGamesList = () => {
   const matchesState = useMatchesState();
-  const matchesDispatch = useMatchesDispatch();
+  const preferencesState = usePreferencesState();
   const { matches } = matchesState;
+  const { preferences } = preferencesState;
 
-  const [liveMatches, setLiveMatches] = useState<Match[] | null>(null);
+  let liveMatches = fetchLiveMatches(matches);
+  const isAuthenticated = !!localStorage.getItem("authToken");
+  if (isAuthenticated) {
+    liveMatches = liveMatches.filter((match) => preferences.sports?.includes(match.sportName));
+    liveMatches = liveMatches.filter((match) => preferences.teams?.includes(match.teams[0]?.name) || preferences.teams.includes(match.teams[1]?.name))
+  }
 
-  useEffect(() => {
-    const getLiveMatches = async () => {
-      const x = (await fetchLiveMatches(matchesDispatch, matches));
-      setLiveMatches(x);
-    }
-    getLiveMatches();
-  }, [matches]);
-
-
-  if (liveMatches && liveMatches?.length == 0)
-    return <div className="rounded mr-6 my-2 h-28 p-2">Loading...</div>
-
+  if (liveMatches.length == 0)
+    return <div className="mr-6 my-2 h-28 w-64 p-2">No Live Matches</div>
   return (
     <div className="flex">
       {Array.isArray(liveMatches) && liveMatches.map((match) => {

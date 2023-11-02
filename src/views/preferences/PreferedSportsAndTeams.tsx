@@ -1,4 +1,3 @@
-import React from "react";
 import { useSportState } from "../../context/sports/context";
 import { useTeamsState } from "../../context/teams/context";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -23,7 +22,7 @@ const PreferedSportsAndTeams = (props: any) => {
   let defaultSports = prefrencesState.preferences.sports;
   let defaultTeams = prefrencesState.preferences.teams;
 
-  const { register, handleSubmit, formState: { errors }, } = useForm<Inputs>({ defaultValues: { sports: defaultSports, teams: defaultTeams } });
+  const { register, handleSubmit } = useForm<Inputs>({ defaultValues: { sports: defaultSports, teams: defaultTeams } });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const user_prefrences = {
