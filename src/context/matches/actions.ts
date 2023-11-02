@@ -19,27 +19,6 @@ export const fetchAllMatches = async (dispatch: MatchesDispatch) => {
   }
 }
 
-export const fetchMatchDetails = async (dispatch: MatchesDispatch, id: number) => {
-  try {
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCH_REQUEST });
-    const response = await fetch(`${API_ENDPOINT}/matches/${id}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    });
-    if (!response)
-      throw new Error("fetch matches failure");
-
-    const data = await response.json();
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCH_SUCCESS });
-    return { ok: true, data: data };
-  }
-  catch (error) {
-    dispatch({ type: MatchesAvailableActions.FETCH_MATCH_FAILURE, payload: "error in fetching matches" })
-    console.log(error);
-    return { ok: false }
-  }
-}
-
 
 
 

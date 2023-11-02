@@ -27,21 +27,6 @@ export const matchesReducer: Reducer<MatchesState, MatchesActions> = (state = in
         isError: true,
         errorMessage: action.payload
       };
-    case MatchesAvailableActions.FETCH_MATCH_REQUEST:
-      return {
-        ...state,
-        isLoading: true
-      }
-    case MatchesAvailableActions.FETCH_MATCH_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-      }
-    case MatchesAvailableActions.FETCH_MATCH_FAILURE:
-      return {
-        ...state,
-        isError: true
-      }
     default:
       return state;
   }
