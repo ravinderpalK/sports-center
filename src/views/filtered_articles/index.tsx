@@ -18,7 +18,7 @@ const Filter: React.FC = () => {
   if (sportsState.isLoading)
     return <div>Lading</div>
   return (
-    <div className="my-4 mx-4">
+    <div className="my-4 mx-4 text-xs lg:text-base">
       <h3 className="font-bold py-2">Favourities</h3>
       <SportAndTeamSelector />
     </div>

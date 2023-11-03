@@ -53,8 +53,8 @@ const SportAndTeamSelector: React.FC = () => {
   return (
     <div>
       <div>
-        <div className="mt-2">
-          <select onChange={handleSportChange} value={selectedSport} className="bg-white border-2 border-gray-400 px-1 py-1">
+        <div className="mt-2 inline">
+          <select onChange={handleSportChange} value={selectedSport} className="bg-white border-2 border-gray-400 px-1 py-1 w-2/5 md:w-3/12 lg:w-8/12">
             {sports.map((sport) => {
               return (
                 <option key={sport.name} value={sport.name}>{sport.name}</option>
@@ -62,8 +62,8 @@ const SportAndTeamSelector: React.FC = () => {
             })}
           </select>
         </div>
-        <div className="mt-2">
-          <select onChange={handleTeamChange} className="bg-white border-2 border-gray-400 px-1 py-1">
+        <div className="mt-2 inline ml-4 lg:ml-0">
+          <select onChange={handleTeamChange} className="bg-white border-2 border-gray-400 px-1 py-1 w-2/5 md:w-3/12 lg:w-8/12">
             {Array.isArray(selectedSportTeams) && selectedSportTeams.map((team) => {
               return (
                 <option key={team.id} value={team.name}>{team.name}</option>

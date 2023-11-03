@@ -10,7 +10,7 @@ const FilteredArticlesList = (props: any) => {
   filteredArticles = filteredArticles.filter((article) => article.teams[0]?.name == selectedTeam || article.teams[1]?.name == selectedTeam);
   console.log(filteredArticles);
   return (
-    <div >
+    <div className="flex flex-row lg:flex-col overflow-scroll">
       {filteredArticles && filteredArticles.map((article) => {
         return (
           <FilteredArticlesListItem key={article.id} article={article} />

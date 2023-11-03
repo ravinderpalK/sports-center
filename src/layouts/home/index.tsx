@@ -16,7 +16,7 @@ const HomeLayout: React.FC = () => {
   }, [prefrencesDispatch]);
 
   return (
-    <div className="h-screen">
+    <div>
       <div className="">
         <Appbar />
       </div>

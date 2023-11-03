@@ -6,10 +6,10 @@ import LiveGamesList from "./LiveGamesList";
 const LiveGamesListContainer = () => {
   const matchesDispatch = useMatchesDispatch();
   useEffect(() => {
-    fetchAllMatches(matchesDispatch);
+    // fetchAllMatches(matchesDispatch);
   }, [matchesDispatch]);
   return (
-    <div className="my-2">
+    <div className="mb-2 mt-1 w-full">
       <LiveGamesList />
     </div>
   )

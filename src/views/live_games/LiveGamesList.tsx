@@ -22,9 +22,10 @@ const LiveGamesList = () => {
   }
 
   if (liveMatches.length == 0)
-    return <div className="mr-6 my-2 h-28 w-64 p-2">No Live Matches</div>
+    return <div className="mr-6 my-2 h-28 p-2">No Live Matches</div>
+
   return (
-    <div className="flex">
+    <div className="flex w-full overflow-scroll pb-2">
       {Array.isArray(liveMatches) && liveMatches.map((match) => {
         return (
           <LiveGamesListItem key={match.id} match={match} />

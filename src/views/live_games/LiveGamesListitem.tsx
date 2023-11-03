@@ -84,17 +84,17 @@ const LiveGamesListItem = (props: any) => {
   }, [])
 
   if (isLoading || !match)
-    return <div className="border-2 rounded mr-6 my-2 h-28 w-64 p-2 bg-gray-100">Loading</div>
+    return <div className="flex-none relative border-2 rounded mr-6 my-2 h-28 w-1/5 p-2 bg-gray-100">Loading</div>
 
   return (
-    <div className="relative border-2 rounded mr-6 my-2 h-28 w-64 p-2 bg-gray-100">
-      <div className="font-semibold">{match.sportName}</div>
-      <div className="text-sm">{match.location}</div>
-      <div className="text-sm">
+    <div className="flex-none relative border-2 rounded mr-6 my-2 h-24 w-7/12 sm:h-28 sm:w-1/2 md:w-1/4 lg:w-1/5 p-2 bg-gray-100">
+      <div className="font-semibold text-sm sm:text-base">{match.sportName}</div>
+      <div className="text-xs sm:text-sm">{match.location}</div>
+      <div className="text-xs sm:text-sm">
         <span className="font-semibold">{match.teams[0].name}</span>
         <span className="float-right">{match.score[match.teams[0].name]}</span>
       </div>
-      <div className="text-sm">
+      <div className="text-xs sm:text-sm">
         <span className="font-semibold">{match.teams[1].name}</span>
         <span className="float-right">{match.score[match.teams[1].name]}</span>
       </div>
