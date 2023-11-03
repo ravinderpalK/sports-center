@@ -16,11 +16,11 @@ const ArticlesListitem = (props: any) => {
       <div className="relative inline-block w-3/4 align-top p-3 h-full">
         <div className="w-9/12">
           <div>{article.sport.name}</div>
-          <div className="font-bold text-lg">{article.title}</div>
+          <div className="font-bold text-lg pt-2 line-clamp-1">{article.title}</div>
           <div className="line-clamp-2">{article.summary}</div>
-          <div>{formatDate(article.date)}</div>
+          <div className="pt-2">{formatDate(article.date)}</div>
         </div>
-        <button onClick={() => setIsOpen(true)} className="absolute bottom-2 right-2">Read More</button>
+        <button onClick={() => setIsOpen(true)} className="absolute bottom-1 right-3 text-sm font-semibold">Read More</button>
         {isOpen && (
           <ArticleDetails id={article.id} isOpen={isOpen} setIsOpen={setIsOpen} />
         )}

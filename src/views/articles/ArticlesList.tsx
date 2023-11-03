@@ -22,7 +22,7 @@ const ArticlesList: React.FC = () => {
   if (articles.length == 0)
     return <span>Select Prefrences</span>
   return (
-    <div>
+    <div >
       {articles.map((article) => {
         return <ArticlesListitem key={article.id} article={article} />
       })}
