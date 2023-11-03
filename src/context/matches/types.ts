@@ -8,7 +8,7 @@ export interface Match {
   startsAt?: string,
   score?: any,
   endsAt: string;
-  isRunning: false;
+  isRunning: boolean;
   playingTeam?: number,
   story?: string,
   teams: Team[];
