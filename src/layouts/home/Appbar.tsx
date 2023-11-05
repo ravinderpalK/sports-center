@@ -19,7 +19,7 @@ const Appbar: React.FC = () => {
     <div className="bg-gray-100">
       <div className=" text-gray-800 relative mx-auto w-16/17 p-2 flex justify-center">
         <div>
-          <h1 className="font-bold text-2xl">Sports Center</h1>
+          <h1 className="font-bold text-xl lg:text-2xl">Sports Center</h1>
         </div>
         <div className="flex absolute right-0">
           <div>
@@ -65,21 +65,22 @@ const Appbar: React.FC = () => {
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">                {navigation.map((item) => (
-                <Menu.Item key={item.name}>
-                  {({ active }) => (
-                    <a
-                      href={item.href}
-                      className={classNames(
-                        active ? 'bg-gray-100' : '',
-                        'block px-4 py-2 text-sm text-gray-700'
-                      )}
-                    >
-                      {item.name}
-                    </a>
-                  )}
-                </Menu.Item>
-              ))}
+              <Menu.Items className="absolute right-0 z-20 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                {navigation.map((item) => (
+                  <Menu.Item key={item.name}>
+                    {({ active }) => (
+                      <a
+                        href={item.href}
+                        className={classNames(
+                          active ? 'bg-gray-100' : '',
+                          'block px-4 py-2 text-sm text-gray-700'
+                        )}
+                      >
+                        {item.name}
+                      </a>
+                    )}
+                  </Menu.Item>
+                ))}
               </Menu.Items>
             </Transition>
           </Menu>

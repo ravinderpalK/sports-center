@@ -1,9 +1,13 @@
 import ArticlesContainer from "./ArticlesContainer";
 
-const Articles: React.FC = () => {
+export interface ScrollToNewsDivProps {
+  scrollToNewsDiv: () => void;
+}
+
+const Articles: React.FC<ScrollToNewsDivProps> = (props) => {
   return (
-    <div className="m-4 text-xs lg:text-base">
-      <ArticlesContainer />
+    <div className="m-3 lg:m-4 text-xs lg:text-base">
+      <ArticlesContainer scrollToNewsDiv={props.scrollToNewsDiv} />
     </div>
   )
 }

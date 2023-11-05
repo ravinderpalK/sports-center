@@ -16,8 +16,8 @@ const HomeLayout: React.FC = () => {
   }, [prefrencesDispatch]);
 
   return (
-    <div>
-      <div className="">
+    <div className="relative z-0">
+      <div className="relative z-30">
         <Appbar />
       </div>
       <div className="">
