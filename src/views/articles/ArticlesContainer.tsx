@@ -27,7 +27,7 @@ const ArticlesContainer: React.FC<ScrollToNewsDivProps> = (props) => {
           <Tab className={({ selected }) => `${selected ? 'border-gray-600 text-black' : ' text-gray-900'} 'flex-1 w-36 lg:w-44 whitespace-nowrap border-b-2 px-1 py-1 text-sm lg:text-base font-medium'`}>
             {isAuthenticated ? `Your News` : 'All News'}
           </Tab>
-          <div className="inline absolute right-0 w-32 mr-10 z-20 origin-top-right rounded-sm bg-gray-200 shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="inline absolute right-0 w-32 z-20 origin-top-right rounded-sm bg-gray-200 shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none">
             <Listbox value={sortBy} onChange={setSortBy}>
               <Listbox.Button className={` cursor-default py-1`}>
                 <span className="pl-2">Sort by: {sortBy}</span>

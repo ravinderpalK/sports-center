@@ -6,7 +6,7 @@ export interface ScrollToNewsDivProps {
 
 const Articles: React.FC<ScrollToNewsDivProps> = (props) => {
   return (
-    <div className="m-3 lg:m-4 text-xs lg:text-base">
+    <div className="m-2 md:m-3 lg:m-3 lg:m-4 text-xs lg:text-base">
       <ArticlesContainer scrollToNewsDiv={props.scrollToNewsDiv} />
     </div>
   )
