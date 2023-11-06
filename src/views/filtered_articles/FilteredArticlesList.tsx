@@ -25,7 +25,6 @@ const FilteredArticlesList: React.FC<Props> = (props: any) => {
   const { articles } = articlesState;
   let filteredArticles = articles.filter((article) => article.sport.name == selectedSport);
   filteredArticles = filteredArticles.filter((article) => article.teams[0]?.name == selectedTeam || article.teams[1]?.name == selectedTeam);
-  console.log(filteredArticles);
 
   const noOfPages = getNoOfPages(filteredArticles.length);
   const startIndex = (pageNo - 1) * 8;

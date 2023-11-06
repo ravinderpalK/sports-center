@@ -63,7 +63,7 @@ const SportAndTeamSelector: React.FC<ScrollToNewsDivProps> = (props) => {
             })}
           </select>
         </div>
-        <div className="mt-2 inline ml-4 lg:ml-0">
+        <div className="mt-2 inline ml-2 md:ml-4 lg:ml-0">
           <select onChange={handleTeamChange} className="bg-white border-2 border-gray-400 px-2 py-1 lg:mt-1 w-2/5 md:w-3/12 lg:w-8/12">
             {Array.isArray(selectedSportTeams) && selectedSportTeams.map((team) => {
               return (
