@@ -1,9 +1,10 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "../layouts/home";
-import Signin from "../views/signin";
-import Signup from "../views/signup";
-import Signout from "../views/singnout";
-import HomePage from "../views/home";
+const Signin = React.lazy(() => import("../views/signin"));
+const Signup = React.lazy(() => import("../views/signup"));
+const Signout = React.lazy(() => import("../views/singnout"));
+const HomePage = React.lazy(() => import("../views/home"));
 
 const router = createBrowserRouter([
   {

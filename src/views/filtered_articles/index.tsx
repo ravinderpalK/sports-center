@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useTeamsDispatch, } from "../../context/teams/context";
 import { fetchTeams } from "../../context/teams/actions";
-import SportAndTeamSelector from "./SportAndTeamSelector";
 import { useSportState, useSportsDispatch } from "../../context/sports/context";
 import { fetchSports } from "../../context/sports/action";
 import { ScrollToNewsDivProps } from "../articles";
+import ErrorBoundary from "../../components/ErrorBoundary";
+const SportAndTeamSelector = React.lazy(() => import("./SportAndTeamSelector"));
 
 
 const Filter: React.FC<ScrollToNewsDivProps> = (props) => {
@@ -18,10 +19,15 @@ const Filter: React.FC<ScrollToNewsDivProps> = (props) => {
 
   if (sportsState.isLoading)
     return <div>Lading</div>
+
   return (
     <div className="my-1 lg:my-4 mx-2 md:mx-3 lg:mx-4 text-xs lg:text-base">
       <h3 className="font-bold pt-1 pb-2 lg:pt-2">Favourities</h3>
-      <SportAndTeamSelector scrollToNewsDiv={props.scrollToNewsDiv} />
+      <ErrorBoundary>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SportAndTeamSelector scrollToNewsDiv={props.scrollToNewsDiv} />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   )
 }

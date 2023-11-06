@@ -1,7 +1,8 @@
+import React, { Fragment, Suspense, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
-import Prefrences from "../../views/preferences";
 import { Link, useLocation } from "react-router-dom";
+import ErrorBoundary from "../../components/ErrorBoundary";
+const Prefrences = React.lazy(() => import("../../views/preferences"));
 
 const Appbar: React.FC = () => {
   const isAuthenticated = !!localStorage.getItem("authToken");
@@ -51,7 +52,11 @@ const Appbar: React.FC = () => {
                   <div className="fixed inset-0 bg-black/30" />
                 </Transition.Child>
                 <div className="fixed inset-0 overflow-y-auto">
-                  <Prefrences setIsOpen={setIsOpen} />
+                  <ErrorBoundary>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <Prefrences setIsOpen={setIsOpen} />
+                    </Suspense>
+                  </ErrorBoundary>
                 </div>
               </Dialog>
             </Transition>

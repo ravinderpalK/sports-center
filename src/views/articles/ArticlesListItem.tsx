@@ -1,5 +1,6 @@
-import { useState } from "react";
-import ArticleDetails from "./ArticleDetails";
+import React, { Suspense, useState } from "react";
+import ErrorBoundary from "../../components/ErrorBoundary";
+const ArticleDetails = React.lazy(() => import("./ArticleDetails"));
 
 
 const ArticlesListitem = (props: any) => {
@@ -21,9 +22,13 @@ const ArticlesListitem = (props: any) => {
           <div className="lg:pt-2">{formatDate(article.date)}</div>
         </div>
         <button onClick={() => setIsOpen(true)} className="absolute bottom-1 right-3 text-xxs lg:text-sm font-semibold">Read More</button>
-        {isOpen && (
-          <ArticleDetails id={article.id} isOpen={isOpen} setIsOpen={setIsOpen} />
-        )}
+        <ErrorBoundary>
+          <Suspense>
+            {isOpen && (
+              <ArticleDetails id={article.id} isOpen={isOpen} setIsOpen={setIsOpen} />
+            )}
+          </Suspense>
+        </ErrorBoundary>
       </div>
       <div className="inline-block w-1/3 md:w-1/4 h-full">
         <img src={article.thumbnail} className="w-full h-full " />

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import Appbar from "./Appbar";
 import { usePreferencesDispatch } from "../../context/user_preferences/context";
 import { fetchPreferences } from "../../context/user_preferences/actions";
 import { Outlet } from "react-router-dom";
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 
 const HomeLayout: React.FC = () => {
@@ -21,7 +22,11 @@ const HomeLayout: React.FC = () => {
         <Appbar />
       </div>
       <div className="relative z-0 flex-auto">
-        <Outlet />
+        <ErrorBoundary>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </div>
   )
