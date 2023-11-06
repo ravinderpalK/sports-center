@@ -38,7 +38,7 @@ const FilteredArticlesList: React.FC<Props> = (props: any) => {
 
   return (
     <div>
-      <div className="flex flex-row lg:flex-col overflow-scroll">
+      <div className="flex flex-row lg:flex-col overflow-x-scroll lg:overflow-hidden">
         {filteredArticles.map((article) => {
           return (
             <FilteredArticlesListItem key={article.id} article={article} />

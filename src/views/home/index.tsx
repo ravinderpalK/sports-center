@@ -7,7 +7,7 @@ import LiveGames from "../live_games";
 const HomePage: React.FC = () => {
   const newsRef = useRef<HTMLDivElement | null>(null);
 
-  const scrollToTop = () => window.scrollTo(0, newsRef.current?.offsetTop ?? 0);
+  const scrollToTop = () => newsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   return (
     <div className="mx-auto w-16/17">
