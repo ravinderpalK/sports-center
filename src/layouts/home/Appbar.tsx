@@ -1,25 +1,30 @@
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import React, { Fragment, useState } from "react";
 import Prefrences from "../../views/preferences";
+import { Link, useLocation } from "react-router-dom";
 
 const Appbar: React.FC = () => {
   const isAuthenticated = !!localStorage.getItem("authToken");
   const [isOpen, setIsOpen] = useState(false);
   let navigation = isAuthenticated ?
     [
-      { name: 'signout', href: '/signout', current: false },
+      { name: 'signout', href: 'signout', current: false },
     ] :
     [
-      { name: 'signin', href: '/signin', current: false },
-      { name: 'signup', href: '/signup', current: false },
+      { name: 'signin', href: 'signin', current: false },
+      { name: 'signup', href: 'signup', current: false },
     ];
 
+  const location = useLocation();
+  console.log(location.pathname);
+
   const classNames = (...classes: string[]): string => classes.filter(Boolean).join(' ');
+
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 relative z-0">
       <div className=" text-gray-800 relative mx-auto w-16/17 p-2 flex justify-center">
         <div>
-          <h1 className="font-bold text-xl lg:text-2xl">Sports Center</h1>
+          <Link to={'/'} className="font-bold text-xl lg:text-2xl">Sports Center</Link>
         </div>
         <div className="flex absolute right-0">
           <div>
@@ -51,39 +56,41 @@ const Appbar: React.FC = () => {
               </Dialog>
             </Transition>
           </div>
-          <Menu as="div" className="relative ml-3">
-            <Menu.Button className={``}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
-                <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
-              </svg>
-            </Menu.Button>
-            <Transition
-              enter="transition duration-100 ease-out"
-              enterFrom="transform scale-95 opacity-0"
-              enterTo="transform scale-100 opacity-100"
-              leave="transition duration-75 ease-out"
-              leaveFrom="transform scale-100 opacity-100"
-              leaveTo="transform scale-95 opacity-0"
-            >
-              <Menu.Items className="absolute right-0 z-20 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                {navigation.map((item) => (
-                  <Menu.Item key={item.name}>
-                    {({ active }) => (
-                      <a
-                        href={item.href}
-                        className={classNames(
-                          active ? 'bg-gray-100' : '',
-                          'block px-4 py-2 text-sm text-gray-700'
-                        )}
-                      >
-                        {item.name}
-                      </a>
-                    )}
-                  </Menu.Item>
-                ))}
-              </Menu.Items>
-            </Transition>
-          </Menu>
+          {location.pathname == '/' ? (
+            <Menu as="div" className="relative ml-3">
+              <Menu.Button className={``}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
+                  <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
+                </svg>
+              </Menu.Button>
+              <Transition
+                enter="transition duration-100 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
+              >
+                <Menu.Items className="absolute right-0 z-20 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  {navigation.map((item) => (
+                    <Menu.Item key={item.name}>
+                      {({ active }) => (
+                        <Link
+                          to={item.href}
+                          className={classNames(
+                            active ? 'bg-gray-100' : '',
+                            'block px-4 py-2 text-sm text-gray-700'
+                          )}
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ))}
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          ) : null}
         </div>
       </div>
 

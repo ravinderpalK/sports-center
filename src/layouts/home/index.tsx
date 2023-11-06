@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Appbar from "./Appbar";
-import HomePageContainer from "./HomePageContainer";
 import { usePreferencesDispatch } from "../../context/user_preferences/context";
 import { fetchPreferences } from "../../context/user_preferences/actions";
+import { Outlet } from "react-router-dom";
 
 
 const HomeLayout: React.FC = () => {
@@ -16,12 +16,12 @@ const HomeLayout: React.FC = () => {
   }, [prefrencesDispatch]);
 
   return (
-    <div className="relative z-0">
-      <div className="relative z-30">
+    <div className="h-screen flex flex-col">
+      <div className="relative z-20 flex-none">
         <Appbar />
       </div>
-      <div className="">
-        <HomePageContainer />
+      <div className="relative z-0 flex-auto">
+        <Outlet />
       </div>
     </div>
   )

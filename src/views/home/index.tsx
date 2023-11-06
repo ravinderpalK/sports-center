@@ -1,10 +1,10 @@
 import React, { useRef } from "react"
-import LiveGames from "../../views/live_games";
-import Articles from "../../views/articles";
-import Filter from "../../views/filtered_articles";
+import Filter from "../filtered_articles";
+import Articles from "../articles";
+import LiveGames from "../live_games";
 
 
-const HomePageContainer: React.FC = () => {
+const HomePage: React.FC = () => {
   const newsRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToTop = () => window.scrollTo(0, newsRef.current?.offsetTop ?? 0);
@@ -25,4 +25,4 @@ const HomePageContainer: React.FC = () => {
   )
 };
 
-export default HomePageContainer;
+export default HomePage;
