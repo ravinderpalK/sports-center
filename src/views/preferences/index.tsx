@@ -7,7 +7,7 @@ const Prefrences = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setIsOpen(true)} >
+      <button id="preferencesBtn" aria-label="PreferencesSetting" onClick={() => setIsOpen(true)} >
         {props.button}
       </button>
       <Transition show={isOpen} as={Fragment}>
