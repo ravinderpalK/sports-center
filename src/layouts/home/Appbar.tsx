@@ -1,8 +1,7 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link, useLocation } from "react-router-dom";
-import ErrorBoundary from "../../components/ErrorBoundary";
-const Prefrences = React.lazy(() => import("../../views/preferences"));
+import Prefrences from "../../views/preferences";
 
 const Appbar: React.FC = () => {
   const isAuthenticated = !!localStorage.getItem("authToken");
@@ -33,16 +32,7 @@ const Appbar: React.FC = () => {
         <div className="flex absolute right-0">
           <div>
             {isAuthenticated &&
-              (
-                <ErrorBoundary>
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <Prefrences button={preferencesButton} />
-                  </Suspense>
-                </ErrorBoundary>
-
-              )}
-
-
+              (<Prefrences button={preferencesButton} />)}
           </div>
           {location.pathname == '/' ? (
             <Menu as="div" className="relative ml-3 z-20">
