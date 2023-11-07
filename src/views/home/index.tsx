@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
   }, [prefrencesDispatch]);
 
   return (
-    <div className="mx-auto w-16/17">
+    <div className="mx-auto w-16/17 h-5/6">
       <LiveGames />
       <h2 ref={newsRef} className="font-bold text-lg lg:text-xl">Trending News</h2>
       <div className="flex flex-col lg:flex-row my-2 h-5/6 ">
