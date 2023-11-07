@@ -119,14 +119,19 @@ const ArticleDetails: React.FC<ArticleProps> = (props) => {
                 leaveTo="opacity-0 scale-95"
               >
                 {article ? (
-                  <Dialog.Panel className="mx-auto max-w-2xl h-full p-4 rounded bg-white">
+                  <Dialog.Panel className="relative mx-auto max-w-xl h-5/6 md:h-19/20 px-5 py-3 rounded bg-white">
+                    <button onClick={() => setIsOpen(false)} className="absolute top-0 right-0 mt-2 mr-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.0} stroke="currentColor" className="w-4 h-4">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                     <div className="h-full overflow-y-scroll no-scrollbar">
-                      <div className="my-2 font-semibold text-gray-900 text-lg">{article.title}</div>
+                      <div className="my-2 font-semibold text-gray-900 md:text-lg">{article.title}</div>
                       <div className="h-1/3 my-2">
                         <img src={article.thumbnail} className="w-full h-full" />
                       </div>
                       <div className="my-2">
-                        <p >{article.content}</p>
+                        <p>{article.content}</p>
                       </div>
                     </div>
                   </Dialog.Panel>
