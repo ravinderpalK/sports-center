@@ -8,10 +8,10 @@ const HomeLayout: React.FC = () => {
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="relative z-20 flex-none">
+      <div className="flex-none">
         <Appbar />
       </div>
-      <div className="relative z-0 flex-auto">
+      <div className="flex-auto">
         <ErrorBoundary>
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
