@@ -1,39 +1,33 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect } from "react";
+import { useEffect, useState } from "react";
 import PreferedSportsAndTeams from "./PreferedSportsAndTeams";
 import { fetchPreferences } from "../../context/user_preferences/actions";
 import { usePreferencesDispatch, usePreferencesState } from "../../context/user_preferences/context";
 
-
 const Prefrences = (props: any) => {
   const { setIsOpen } = props;
   const prefrencesDispatch = usePreferencesDispatch();
-  const preferencesState = usePreferencesState();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchPreferences(prefrencesDispatch);
+    setIsLoading(true);
+    (async () => {
+      await fetchPreferences(prefrencesDispatch);
+      setIsLoading(false);
+    })();
   }, [prefrencesDispatch]);
 
-  if (preferencesState.isLoading)
-    return <div className="h-full flex justify-center items-center">Loading</div>
+  if (isLoading)
+    return (
+      <div className="h-full flex justify-center items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 animate-spin">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+        </svg>
+      </div>
+    )
 
   return (
-    <div className="flex min-h-full items-center justify-center p-4 text-center h-screen">
-      <Transition.Child
-        as={Fragment}
-        enter="ease-out duration-300"
-        enterFrom="opacity-0 scale-95"
-        enterTo="opacity-100 scale-100"
-        leave="ease-in duration-200"
-        leaveFrom="opacity-100 scale-100"
-        leaveTo="opacity-0 scale-95"
-      >
-        <Dialog.Panel className={`w-3/5 bg-white overflow-auto p-8 rounded-2`}>
-          <Dialog.Title className="text-2xl font-bold leading-6 text-gray-900">Prefrences</Dialog.Title>
-          <PreferedSportsAndTeams setIsOpen={setIsOpen} />
-        </Dialog.Panel>
-      </Transition.Child>
-    </div>
+    <PreferedSportsAndTeams setIsOpen={setIsOpen} />
   )
 }
 
