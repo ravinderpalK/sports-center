@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { usePreferencesDispatch, usePreferencesState } from "../../context/user_preferences/context";
 import { updatePreferences } from "../../context/user_preferences/actions";
 import { Transition, Dialog } from "@headlessui/react";
-import React, { Fragment, MouseEventHandler, useState } from "react";
+import React, { Fragment, useState } from "react";
 
 type Inputs = {
   sports: string[];
