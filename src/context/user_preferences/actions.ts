@@ -40,11 +40,11 @@ export const updatePreferences = async (dispatch: PreferencesDispatch, prefrence
 
     if (!response)
       throw new Error("cannot fetch user prefrences");
-    fetchPreferences(dispatch);
     dispatch({ type: PreferencesAvailableActions.UPDATE_PREFERENCES_SUCCESS });
+    await fetchPreferences(dispatch);
   }
   catch (error) {
     console.log(error);
-    dispatch({ type: PreferencesAvailableActions.FETCH_PREFERENCES_FAILURE, payload: "failed to update user prefrences" });
+    dispatch({ type: PreferencesAvailableActions.UPDATE_PREFERENCES_FAILURE, payload: "failed to update user prefrences" });
   }
 }
