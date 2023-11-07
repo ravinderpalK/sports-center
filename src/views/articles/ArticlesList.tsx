@@ -68,7 +68,7 @@ const ArticlesList: React.FC<Props> = (props) => {
     scrollToNewsDiv();
   }
   const preferencesButton =
-    <button type="button" className="underline">Select Prefrences</button>;
+    <div className="underline">Select Prefrences</div>;
 
   if (articles.length == 0)
     return <div className="mt-2">
