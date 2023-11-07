@@ -1,13 +1,24 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import Filter from "../filtered_articles";
 import Articles from "../articles";
 import LiveGames from "../live_games";
+import { usePreferencesDispatch } from "../../context/user_preferences/context";
+import { fetchPreferences } from "../../context/user_preferences/actions";
 
 
 const HomePage: React.FC = () => {
   const newsRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToTop = () => newsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const isAuthenticated = !!localStorage.getItem("authToken");
+  const prefrencesDispatch = usePreferencesDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchPreferences(prefrencesDispatch);
+    }
+  }, [prefrencesDispatch]);
 
   return (
     <div className="mx-auto w-16/17">
