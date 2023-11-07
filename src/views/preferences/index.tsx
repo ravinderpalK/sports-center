@@ -1,6 +1,7 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, Suspense, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import PreferencesContainer from "./PreferencesContainer";
+import ErrorBoundary from "../../components/ErrorBoundary";
+const PreferencesContainer = React.lazy(() => import("./PreferencesContainer"));
 
 const Prefrences = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +24,14 @@ const Prefrences = (props: any) => {
             <div className="fixed inset-0 bg-black/30" />
           </Transition.Child>
           <div className="fixed inset-0 overflow-y-auto">
-            <PreferencesContainer setIsOpen={setIsOpen} />
+            <ErrorBoundary>
+              <Suspense fallback={<div>Loading...</div>}>
+                <PreferencesContainer setIsOpen={setIsOpen} />
+              </Suspense>
+            </ErrorBoundary>
           </div>
         </Dialog>
-      </Transition>
+      </Transition >
     </>)
 }
 
