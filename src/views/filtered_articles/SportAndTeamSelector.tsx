@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSportState } from "../../context/sports/context";
 import { useTeamsState } from "../../context/teams/context";
 import FilteredArticlesList from "./FilteredArticlesList";
 import { usePreferencesState } from "../../context/user_preferences/context";
 import { Team } from "../../context/teams/types";
 import { ScrollToNewsDivProps } from "../articles";
+import ErrorBoundary from "../../components/ErrorBoundary";
+import Prefrences from "../preferences";
 
 
 const SportAndTeamSelector: React.FC<ScrollToNewsDivProps> = (props) => {
@@ -45,11 +47,23 @@ const SportAndTeamSelector: React.FC<ScrollToNewsDivProps> = (props) => {
     setSelectedTeam(e.target.value);
   }
 
-  if (sports.length == 0)
-    return <div>Set Preferences</div>
-
   if (sportsState.isLoading || teamsState.isLoading)
     return <div>Loading</div>
+
+  const preferencesButton =
+    <div className="underline">Select Prefrences</div>;
+
+  if (sports.length == 0)
+    return <div className="mt-2">
+      {isAuthenticated &&
+        (
+          <ErrorBoundary>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Prefrences button={preferencesButton} />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+    </div>
 
   return (
     <div>
