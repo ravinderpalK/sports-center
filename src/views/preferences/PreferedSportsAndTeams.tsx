@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { usePreferencesDispatch, usePreferencesState } from "../../context/user_preferences/context";
 import { updatePreferences } from "../../context/user_preferences/actions";
 import { Transition, Dialog } from "@headlessui/react";
-import { Fragment } from "react";
+import React, { Fragment, MouseEventHandler, useState } from "react";
 
 type Inputs = {
   sports: string[];
@@ -21,10 +21,12 @@ const PreferedSportsAndTeams = (props: any) => {
   const prefrencesState = usePreferencesState();
   const prefrencesDispatch = usePreferencesDispatch();
 
-  let defaultSports = prefrencesState.preferences.sports;
-  let defaultTeams = prefrencesState.preferences.teams;
+  let [selectedSports, setSelectedSport] = useState(prefrencesState.preferences.sports ?? []);
+  let selectedTeams = prefrencesState.preferences.teams ?? [];
 
-  const { register, handleSubmit } = useForm<Inputs>({ defaultValues: { sports: defaultSports, teams: defaultTeams } });
+  let selectedSportTeams = allTeams.filter((team) => selectedSports.includes(team.plays));
+
+  const { register, handleSubmit } = useForm<Inputs>({ defaultValues: { sports: selectedSports, teams: selectedTeams } });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const user_prefrences = {
@@ -32,6 +34,17 @@ const PreferedSportsAndTeams = (props: any) => {
     }
     updatePreferences(prefrencesDispatch, user_prefrences);
     setIsOpen(false);
+  }
+
+  const onSelect: React.MouseEventHandler<HTMLInputElement> = (event: any) => {
+    console.log(event.target.checked);
+    if (event.target.checked) {
+      setSelectedSport([...selectedSports, event.target.value]);
+    }
+    else {
+      const newSelectedSports = selectedSports.filter((sport) => sport != event.target.value);
+      setSelectedSport(newSelectedSports);
+    }
   }
 
   return (
@@ -54,7 +67,7 @@ const PreferedSportsAndTeams = (props: any) => {
                 {allSports.map((sport) => (
                   <div key={sport.id} className="flex items-baseline mt-1">
                     <label htmlFor={`${sport.id}`} className="">{sport.name}</label>
-                    <input {...register("sports")} type="checkbox" id={`${sport.id}`} value={sport.name} className="ml-auto w-4 h-4" />
+                    <input {...register("sports")} type="checkbox" onClick={onSelect} id={`${sport.id}`} value={sport.name} className="ml-auto w-4 h-4" />
                   </div>
                 ))}
               </div>
@@ -62,7 +75,7 @@ const PreferedSportsAndTeams = (props: any) => {
             <div className="text-left mt-4">
               <h2 className="text-xl font-bold">Favourite Teams</h2>
               <div className="grid grid-cols-3 gap-x-32">
-                {allTeams.map((team) => (
+                {selectedSportTeams.map((team) => (
                   <div key={team.id} className="flex items-baseline mt-1">
                     <label htmlFor={`${team.id}`} className="">{team.name}</label>
                     <input {...register("teams")} type="checkbox" id={`${team.id}`} value={team.name} className="ml-auto w-4 h-4" />

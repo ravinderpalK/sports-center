@@ -1,34 +1,33 @@
-import { useEffect, useState } from "react";
-import PreferedSportsAndTeams from "./PreferedSportsAndTeams";
-import { fetchPreferences } from "../../context/user_preferences/actions";
-import { usePreferencesDispatch, usePreferencesState } from "../../context/user_preferences/context";
+import { Fragment, useState } from "react";
+import { Transition, Dialog } from "@headlessui/react";
+import PreferencesContainer from "./PreferencesContainer";
 
 const Prefrences = (props: any) => {
-  const { setIsOpen } = props;
-  const prefrencesDispatch = usePreferencesDispatch();
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    (async () => {
-      await fetchPreferences(prefrencesDispatch);
-      setIsLoading(false);
-    })();
-  }, [prefrencesDispatch]);
-
-  if (isLoading)
-    return (
-      <div className="h-full flex justify-center items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 animate-spin">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-        </svg>
-      </div>
-    )
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <PreferedSportsAndTeams setIsOpen={setIsOpen} />
-  )
+    <>
+      <button onClick={() => setIsOpen(true)} >
+        {props.button}
+      </button>
+      <Transition show={isOpen} as={Fragment}>
+        <Dialog onClose={() => setIsOpen(false)}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/30" />
+          </Transition.Child>
+          <div className="fixed inset-0 overflow-y-auto">
+            <PreferencesContainer setIsOpen={setIsOpen} />
+          </div>
+        </Dialog>
+      </Transition>
+    </>)
 }
 
 export default Prefrences;
