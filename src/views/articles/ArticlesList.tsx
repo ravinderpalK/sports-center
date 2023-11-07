@@ -92,7 +92,7 @@ const ArticlesList: React.FC<Props> = (props) => {
       <div className="flex justify-center">
         {pageNo != 1 ?
           (<>
-            <button onClick={() => updatePage(-1)} className="rounded-sm bg-gray-600 text-white mx-2 my-1 px-2 py-1">
+            <button onClick={() => updatePage(-1)} id="prevArticle" aria-label="prevArticle" className="rounded-sm bg-gray-600 text-white mx-2 my-1 px-2 py-1">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
@@ -106,7 +106,7 @@ const ArticlesList: React.FC<Props> = (props) => {
             <button className="rounded-sm bg-gray-800 text-white mx-2 my-1 px-3 py-1">{pageNo}</button>
             <button onClick={() => updatePage(1)} className="rounded-sm bg-gray-600 text-white mx-2 my-1 px-3 py-1">{pageNo + 1}</button>
             {pageNo != noOfPages - 1 ? <button onClick={() => updatePage(2)} className="rounded-sm bg-gray-600 text-white mx-2 my-1 px-3 py-1">{pageNo + 2}</button> : null}
-            <button onClick={() => updatePage(1)} className="rounded-sm bg-gray-600 text-white mx-2 my-1 px-2 py-1">
+            <button onClick={() => updatePage(1)} id="nextArticle" aria-label="nextArticle" className="rounded-sm bg-gray-600 text-white mx-2 my-1 px-2 py-1">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
               </svg>

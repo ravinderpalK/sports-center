@@ -31,7 +31,7 @@ const ArticlesListitem = (props: any) => {
         </ErrorBoundary>
       </div>
       <div className="inline-block w-1/3 md:w-1/4 h-full">
-        <img src={article.thumbnail} className="w-full h-full " />
+        <img src={article.thumbnail} alt={`${article.sport.name} image`} className="w-full h-full " />
       </div>
     </div>
   )
