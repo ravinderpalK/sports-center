@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useArticlesState } from "../../context/articles/context";
 import { Article } from "../../context/articles/types";
 import { usePreferencesState } from "../../context/user_preferences/context";
 import ArticlesListitem from "./ArticlesListItem";
 import { ScrollToNewsDivProps } from ".";
+import ErrorBoundary from "../../components/ErrorBoundary";
+const Prefrences = React.lazy(() => import("../preferences"));
 
 const sortArticles = (article: Article[], sortBy: string) => {
   switch (sortBy) {
@@ -42,9 +44,9 @@ const ArticlesList: React.FC<Props> = (props) => {
   const preferencesSate = usePreferencesState();
   let { articles, isLoading, isError, errorMessage } = articlesState;
   const { preferences } = preferencesSate;
+
   if (isError)
     return <span>{errorMessage}</span>
-
   if (isLoading)
     return <span>Loading...</span>
 
@@ -65,9 +67,20 @@ const ArticlesList: React.FC<Props> = (props) => {
     setPageNo(pageNo + value);
     scrollToNewsDiv();
   }
+  const preferencesButton =
+    <button type="button" className="underline">Select Prefrences</button>;
 
   if (articles.length == 0)
-    return <span>Select Prefrences</span>
+    return <div className="mt-2">
+      {isAuthenticated &&
+        (
+          <ErrorBoundary>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Prefrences button={preferencesButton} />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+    </div>
 
   return (
     <div>
