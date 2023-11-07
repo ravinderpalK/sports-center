@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useArticlesState } from "../../context/articles/context";
 import FilteredArticlesListItem from "./FilteredArticlesListItem";
 import { ScrollToNewsDivProps } from "../articles";

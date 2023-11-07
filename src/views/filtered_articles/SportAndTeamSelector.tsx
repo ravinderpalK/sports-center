@@ -14,12 +14,12 @@ const SportAndTeamSelector: React.FC<ScrollToNewsDivProps> = (props) => {
   let { sports } = sportsState;
   const { teams } = teamsState;
   const { preferences } = preferencesState;
-
   const [selectedSport, setSelectedSport] = useState<string>(sports[0]?.name);
   const [selectedTeam, setSelectedTeam] = useState<string>("");
 
   const isAuthenticated = !!localStorage.getItem("authToken");
   let selectedSportTeams: Team[];
+
   if (isAuthenticated) {
     if (preferences.sports) sports = sports.filter((sport) => preferences.sports?.includes(sport.name));
     else sports = [];
@@ -48,7 +48,7 @@ const SportAndTeamSelector: React.FC<ScrollToNewsDivProps> = (props) => {
   if (sports.length == 0)
     return <div>Set Preferences</div>
 
-  if (sportsState.isLoading || teamsState.isLoading || preferencesState.isLoading)
+  if (sportsState.isLoading || teamsState.isLoading)
     return <div>Loading</div>
 
   return (
