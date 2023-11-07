@@ -7,7 +7,10 @@ export default {
   theme: {
     extend: {
       width: {
-        '16/17': '94.118%'
+        '16/17': '94.11%'
+      },
+      height: {
+        '19/20': '95%'
       },
       fontSize: {
         'xxs': '0.6rem'
