@@ -16,12 +16,16 @@ export const fetchPreferences = async (dispatch: PreferencesDispatch) => {
     if (!response)
       throw new Error("cannot fetch user prefrences");
 
+    if (!response.ok) {
+      throw await response.json();
+    }
     const data = await response.json();
     dispatch({ type: PreferencesAvailableActions.FETCH_PREFERENCES_SUCCESS, payload: data.preferences });
+    return { ok: true, error: null }
   }
-  catch (error) {
-    console.log(error);
+  catch (error: any) {
     dispatch({ type: PreferencesAvailableActions.FETCH_PREFERENCES_FAILURE, payload: "unable to fetch user prefrences" });
+    return { ok: false, error: error };
   }
 }
 
@@ -43,7 +47,7 @@ export const updatePreferences = async (dispatch: PreferencesDispatch, prefrence
     dispatch({ type: PreferencesAvailableActions.UPDATE_PREFERENCES_SUCCESS });
     await fetchPreferences(dispatch);
   }
-  catch (error) {
+  catch (error: any) {
     console.log(error);
     dispatch({ type: PreferencesAvailableActions.UPDATE_PREFERENCES_FAILURE, payload: "failed to update user prefrences" });
   }
