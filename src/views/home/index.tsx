@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import Filter from "../filtered_articles";
 import Articles from "../articles";
 import LiveGames from "../live_games";
