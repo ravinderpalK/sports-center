@@ -29,6 +29,7 @@ export const preferencesReducer: Reducer<PreferencesState, PreferencesActions> =
     case PreferencesAvailableActions.FETCH_PREFERENCES_FAILURE:
       return {
         ...state,
+        isLoading: false,
         isError: true,
         errorMessage: action.payload,
       }
