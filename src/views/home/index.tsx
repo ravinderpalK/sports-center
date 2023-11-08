@@ -17,14 +17,13 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const prefrencesDispatch = usePreferencesDispatch();
   const preferencesState = usePreferencesState();
-
   useEffect(() => {
     if (isAuthenticated) {
       (async () => {
         const response = await fetchPreferences(prefrencesDispatch)
         if (!response.ok) {
           if (response.error.errors.includes("Invalid auth token"))
-            navigate("/signin");
+            navigate("/signout");
         }
       })();
     }
