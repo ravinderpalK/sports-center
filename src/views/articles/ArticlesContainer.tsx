@@ -31,16 +31,16 @@ const ArticlesContainer: React.FC<ScrollToNewsDivProps> = (props) => {
     <div>
       <Tab.Group>
         <Tab.List className={`relative `} >
-          <Tab className={({ selected }) => `${selected ? 'border-gray-600 text-black' : ' text-gray-900'} 'flex-1 w-20 md:w-32 lg:w-44 whitespace-nowrap border-b-2 px-1 py-1 text-xs md:text-sm lg:text-base font-medium'`}>
+          <Tab className={({ selected }) => `${selected ? 'border-gray-600 text-black' : ' text-gray-900'} 'flex-1 w-16 md:w-32 lg:w-44 whitespace-nowrap border-b-2 px-1 py-1 text-xs md:text-sm lg:text-base font-medium'`}>
             {isAuthenticated ? `Your News` : 'All News'}
           </Tab>
           {!isAuthenticated && (
             <>
-              <Tab className={({ selected }) => `${selected ? 'border-gray-600 text-black' : ' text-gray-900'} 'flex-1 w-20 md:w-32 lg:w-44 whitespace-nowrap border-b-2 px-1 py-1 text-xs md:text-sm lg:text-base font-medium'`}>
+              <Tab className={({ selected }) => `${selected ? 'border-gray-600 text-black' : ' text-gray-900'} 'flex-1 w-16 md:w-32 lg:w-44 whitespace-nowrap border-b-2 px-1 py-1 text-xs md:text-sm lg:text-base font-medium'`}>
                 {sports[0].name}
               </Tab>
               {sports[1] && (
-                <Tab className={({ selected }) => `${selected ? 'border-gray-600 text-black' : ' text-gray-900'} 'flex-1 w-20 md:w-32 lg:w-44 whitespace-nowrap border-b-2 px-1 py-1 text-xs md:text-sm lg:text-base font-medium'`}>
+                <Tab className={({ selected }) => `${selected ? 'border-gray-600 text-black' : ' text-gray-900'} 'flex-1 w-16 md:w-32 lg:w-44 whitespace-nowrap border-b-2 px-1 py-1 text-xs md:text-sm lg:text-base font-medium'`}>
                   {sports[1].name}
                 </Tab>
               )}
