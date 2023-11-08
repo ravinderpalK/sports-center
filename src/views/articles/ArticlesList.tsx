@@ -35,10 +35,11 @@ const getNoOfPages = (length: number) => {
 
 interface Props extends ScrollToNewsDivProps {
   sortBy: string;
+  selectedSport: string | null;
 }
 
 const ArticlesList: React.FC<Props> = (props) => {
-  const { sortBy, scrollToNewsDiv } = props;
+  const { sortBy, scrollToNewsDiv, selectedSport } = props;
   const [pageNo, setPageNo] = useState(1);
   const articlesState = useArticlesState();
   const preferencesSate = usePreferencesState();
@@ -56,7 +57,12 @@ const ArticlesList: React.FC<Props> = (props) => {
     articles = articles.filter((article) => preferences.teams?.includes(article.teams[0]?.name) || preferences.teams.includes(article.teams[1]?.name))
   }
 
+  if (selectedSport) {
+    articles = articles.filter((article) => article.sport.name == selectedSport);
+  }
+
   sortArticles(articles, sortBy);
+
   const noOfPages = getNoOfPages(articles.length);
   const startIndex = (pageNo - 1) * 10;
   const endIndex = (pageNo * 10);
