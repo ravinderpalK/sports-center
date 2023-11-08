@@ -58,27 +58,27 @@ const PreferedSportsAndTeams = (props: any) => {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <Dialog.Panel className={`w-3/5 bg-white overflow-auto p-8 rounded-2`}>
-          <Dialog.Title className="text-2xl font-bold leading-6 text-gray-900">Prefrences</Dialog.Title>
+        <Dialog.Panel className={`w-4/5 lg:w-3/5 bg-white overflow-auto py-4 px-2 md:p-8 rounded-2 text-xs md:text-base`}>
+          <Dialog.Title className="text-xl lg:text-2xl font-bold leading-6 text-gray-900">Prefrences</Dialog.Title>
           <form className="m-4 " onSubmit={handleSubmit(onSubmit)}>
             <div className="text-left">
-              <h2 className="text-xl font-bold">Favourite Sports</h2>
-              <div className="grid grid-cols-3 gap-x-32">
+              <h2 className="text-base md:text-xl font-bold">Favourite Sports</h2>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-16 lg:gap-x-32 text-xs md:text-base">
                 {allSports.map((sport) => (
                   <div key={sport.id} className="flex items-baseline mt-1">
                     <label htmlFor={`${sport.id}`} className="">{sport.name}</label>
-                    <input {...register("sports")} type="checkbox" onClick={onSelect} id={`${sport.id}`} value={sport.name} className="ml-auto w-4 h-4" />
+                    <input {...register("sports")} type="checkbox" onClick={onSelect} id={`${sport.id}`} value={sport.name} className="ml-auto w-3 h-3 md:w-4 md:h-4" />
                   </div>
                 ))}
               </div>
             </div>
-            <div className="text-left mt-4">
-              <h2 className="text-xl font-bold">Favourite Teams</h2>
-              <div className="grid grid-cols-3 gap-x-32">
+            <div className="text-left mt-8">
+              <h2 className="text-base lg:text-xl font-bold">Favourite Teams</h2>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-16 lg:gap-x-32 text-xs md:text-base">
                 {selectedSportTeams.map((team) => (
                   <div key={team.id} className="flex items-baseline mt-1">
                     <label htmlFor={`${team.id}`} className="">{team.name}</label>
-                    <input {...register("teams")} type="checkbox" id={`${team.id}`} value={team.name} className="ml-auto w-4 h-4" />
+                    <input {...register("teams")} type="checkbox" id={`${team.id}`} value={team.name} className="ml-auto w-3 h-3 md:w-4 md:h-4" />
                   </div>
                 ))}
               </div>

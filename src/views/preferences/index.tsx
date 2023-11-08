@@ -6,7 +6,7 @@ const PreferencesContainer = React.lazy(() => import("./PreferencesContainer"));
 const Prefrences = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <>
+    <div className="text-xs lg:text-base">
       <button id="preferencesBtn" aria-label="PreferencesSetting" onClick={() => setIsOpen(true)} >
         {props.button}
       </button>
@@ -32,7 +32,7 @@ const Prefrences = (props: any) => {
           </div>
         </Dialog>
       </Transition >
-    </>)
+    </div>)
 }
 
 export default Prefrences;
