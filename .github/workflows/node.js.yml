@@ -41,24 +41,11 @@ jobs:
 
     # Steps to execute within the job
     steps:
-      - name: Repository Checkout
-        uses: actions/checkout@v1
-
-      # - name: Install Netlify
-      #   run: npm install netlify-cli@17.10.1 -g
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy Netlify
-        uses: danakim/gh-action-deploy-netlify@master
+      - uses: actions/checkout@v3
+      - uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
-          AUTH_TOKEN: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
-          SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          DEPLOY_PROD: true
+          NETLIFY_AUTH_TOKEN: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
 
   # Job to send Slack notifications
