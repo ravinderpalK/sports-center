@@ -24,7 +24,7 @@ jobs:
       # Run the app
       - name: Run the app
         id: run-app
-        run: npm run dev
+        run: npm run dev & sleep 5
 
       # Run integration tests
       - name: Run integration tests
