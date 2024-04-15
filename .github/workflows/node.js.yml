@@ -47,6 +47,7 @@ jobs:
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
           NETLIFY_DEPLOY_TO_PROD: true
+          BUILD_COMMAND: npm run dev
 
   # Job to send Slack notifications
   notify:
