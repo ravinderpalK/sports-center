@@ -13,7 +13,7 @@ const ArticlesListitem = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div key={article.id} className="my-2 lg:my-4 h-32 lg:h-44 bg-white">
+    <div key={article.id} className="my-2 lg:my-4 h-32 lg:h-44 bg-white trending-new-article">
       <div className="relative inline-block w-2/3 md:w-3/4 align-top p-2 lg:p-3 h-full">
         <div className="w-10/12 md:w-9/12">
           <div>{article.sport.name}</div>
@@ -21,7 +21,7 @@ const ArticlesListitem = (props: any) => {
           <div className="line-clamp-2">{article.summary}</div>
           <div className="lg:pt-2">{formatDate(article.date)}</div>
         </div>
-        <button onClick={() => setIsOpen(true)} className="absolute bottom-1 right-3 text-xxs lg:text-sm font-semibold">Read More</button>
+        <button onClick={() => setIsOpen(true)} className={`absolute bottom-1 right-3 text-xxs lg:text-sm font-semibold ${article.id}`}>Read More</button>
         <ErrorBoundary>
           <Suspense>
             {isOpen && (

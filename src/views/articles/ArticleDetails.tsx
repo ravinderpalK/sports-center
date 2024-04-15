@@ -92,7 +92,7 @@ const ArticleDetails: React.FC<ArticleProps> = (props) => {
   }, []);
   console.log(id);
   return (
-    <div className="w-full">
+    <div className={`w-full`} id="article-details">
       <Transition show={isOpen} as={Fragment}>
         <Dialog onClose={() => setIsOpen(false)}>
 
