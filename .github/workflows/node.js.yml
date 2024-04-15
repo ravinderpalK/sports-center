@@ -70,6 +70,7 @@ jobs:
             --auth ${{ secrets.NETLIFY_API_TOKEN }} \
             $prod_flag
 
+
   # Job to send Slack notifications
   notify:
     # Define the job dependencies
