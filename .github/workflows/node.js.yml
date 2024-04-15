@@ -32,6 +32,7 @@ jobs:
       #     npm install cypress cypress-json-results
       #     npx cypress run
 
+
   # Job to deploy the app to production
   deploy:
     # Define the job dependencies
