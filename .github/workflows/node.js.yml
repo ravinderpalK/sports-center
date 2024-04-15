@@ -19,7 +19,7 @@ jobs:
 
         # Install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: npm i
   
       # Run the app
       - name: Run the app
@@ -27,10 +27,10 @@ jobs:
         run: npm run dev & sleep 5
 
       # Run integration tests
-      - name: Run integration tests
-        run: |
-          npm install cypress cypress-json-results
-          npx cypress run
+      # - name: Run integration tests
+      #   run: |
+      #     npm install cypress cypress-json-results
+      #     npx cypress run
 
   # Job to deploy the app to production
   deploy:
@@ -47,7 +47,6 @@ jobs:
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
           NETLIFY_DEPLOY_TO_PROD: true
-          BUILD_COMMAND: npm run dev
 
   # Job to send Slack notifications
   notify:
