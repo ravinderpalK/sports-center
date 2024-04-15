@@ -41,15 +41,19 @@ jobs:
 
     # Steps to execute within the job
     steps:
-      # Deploy to production using a custom action
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0
-        with:
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
+      - name: Install Netlify
+        run: npm install netlify-cli@17.10.1 -g
+
+       - name: Deploy to Netlify
+        id: netlify_deploy
+        run: |
+          prod_flag=""
+          if [ "$BRANCH_NAME" = "main" ]; then prod_flag="--prod"; fi
+          netlify deploy \
+            --dir dist \
+            --site ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }} \
+            --auth ${{ secrets.NETLIFY_API_TOKEN }} \
+            $prod_flag
 
 
   # Job to send Slack notifications
