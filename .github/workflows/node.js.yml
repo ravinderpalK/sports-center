@@ -45,7 +45,7 @@ jobs:
       - name: Deploy to production
         uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
-          build_command: npm i
+          build_command: npm ci
           NETLIFY_AUTH_TOKEN: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
           NETLIFY_DEPLOY_TO_PROD: true
 
