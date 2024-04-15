@@ -49,6 +49,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
           NETLIFY_DEPLOY_TO_PROD: true
 
+
   # Job to send Slack notifications
   notify:
     # Define the job dependencies
