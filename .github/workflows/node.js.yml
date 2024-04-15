@@ -66,7 +66,7 @@ jobs:
           if [ "$BRANCH_NAME" = "main" ]; then prod_flag="--prod"; fi
           netlify deploy \
             --dir dist \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --site ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }} \
             --auth ${{ secrets.NETLIFY_API_TOKEN }} \
             $prod_flag
 
