@@ -36,13 +36,13 @@ jobs:
   # Job to deploy the app to production
   deploy:
     - name: Deploy production to Netlify
-      uses: South-Paw/action-netlify-deploy@v1.2.0
-      with:
-        github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-        netlify-auth-token: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
-        netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
-        build-dir: './build'
-        comment-on-commit: true
+        uses: South-Paw/action-netlify-deploy@v1.2.0
+        with:
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          netlify-auth-token: ${{ secrets.MY_NETLIFY_ACCESS_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          build-dir: './build'
+          comment-on-commit: true
 
 
   # Job to send Slack notifications
