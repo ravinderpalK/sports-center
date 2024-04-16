@@ -33,6 +33,7 @@ jobs:
       #     npx cypress run
 
 
+      
   # Job to deploy the app to production
   deploy:
     needs: run-tests
@@ -48,7 +49,7 @@ jobs:
       - name: Deploy netlify
         run: curl -X POST -d {} https://api.netlify.com/build_hooks/661ead9a036744482f207bc5
           
-        
+
   # Job to send Slack notifications
   notify:
     # Define the job dependencies
