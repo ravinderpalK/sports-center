@@ -35,7 +35,12 @@ jobs:
 
   # Job to deploy the app to production
   deploy:
-    - name: Deploy production to Netlify
+    needs: run-tests
+    runs-on: ubuntu-latest
+    if: needs.run-tests.result == 'success'
+  
+    steps : 
+      - name: Deploy production to Netlify
         uses: South-Paw/action-netlify-deploy@v1.2.0
         with:
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
