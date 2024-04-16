@@ -50,16 +50,10 @@ jobs:
           node-version: 12.x
       # Run npm install 
       - run: npm install
-      
+
       # Deploy to Netlify using our production secrets
-      - name: Deploy to netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        with:
-          args: deploy --dir=build --prod
-          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+      - name: Deploy netlify
+        run: curl -X POST -d {} curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
           
 
   # Job to send Slack notifications
