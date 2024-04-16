@@ -48,9 +48,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      # Run npm install and build on our code
+      # Run npm install 
       - run: npm install
-      - run: npm run dev
+      
       # Deploy to Netlify using our production secrets
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
