@@ -47,9 +47,11 @@ jobs:
 
       # Deploy to Netlify using our production secrets
       - name: Deploy netlify
-        env : 
+        env :
           NETLIFY_BUILD_HOOK : ${{ secrets.NETLIFY_BUILD_HOOK }}
-        run: echo ${NETLIFY_BUILD_HOOK} && curl -X POST -d {} ${NETLIFY_BUILD_HOOK}
+        run : |
+          echo $NETLIFY_BUILD_HOOK
+        # run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
           
   # Job to send Slack notifications
   notify:
