@@ -40,10 +40,26 @@ jobs:
     if: needs.run-tests.result == 'success'
   
     steps:
-      - uses: jsmrcaga/action-netlify-deploy@v2.0.0
+      # Get code from repo
+      - name: Checkout code
+        uses: actions/checkout@v1
+      # Install NodeJS
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
         with:
+          node-version: 12.x
+      # Run npm install and build on our code
+      - run: npm install
+      - run: npm run build --if-present
+      # Deploy to Netlify using our production secrets
+      - name: Deploy to netlify
+        uses: netlify/actions/cli@master
+        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_DEPLOY_TO_PROD: true
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          args: deploy --dir=build --prod
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
           
 
   # Job to send Slack notifications
