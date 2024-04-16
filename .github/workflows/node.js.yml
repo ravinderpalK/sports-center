@@ -44,9 +44,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
 
-      # Deploy to Netlify using our production secrets
-      - name: Deploy netlify
-        run: curl -X POST -d {} https://api.netlify.com/build_hooks/661ead9a036744482f207bc5
+      # # Deploy to Netlify using our production secrets
+      # - name: Deploy netlify
+      #   run: curl -X POST -d {} https://api.netlify.com/build_hooks/661ead9a036744482f207bc5
           
   # Job to send Slack notifications
   notify:
