@@ -43,19 +43,11 @@ jobs:
       # Get code from repo
       - name: Checkout code
         uses: actions/checkout@v1
-      # Install NodeJS
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      # Run npm install 
-      - run: npm install
 
       # Deploy to Netlify using our production secrets
       - name: Deploy netlify
-        run: curl -X PUT -d {} https://api.netlify.com/build_hooks/661ead9a036744482f207bc5
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/661ead9a036744482f207bc5
           
-
   # Job to send Slack notifications
   notify:
     # Define the job dependencies
