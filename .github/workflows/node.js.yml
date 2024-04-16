@@ -50,7 +50,7 @@ jobs:
           node-version: 12.x
       # Run npm install and build on our code
       - run: npm install
-      - run: npm run build --if-present
+      - run: npm run dev
       # Deploy to Netlify using our production secrets
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
