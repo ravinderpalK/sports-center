@@ -43,7 +43,6 @@ jobs:
           netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
           build-dir: './build'
           comment-on-commit: true
-
           
 
   # Job to send Slack notifications
