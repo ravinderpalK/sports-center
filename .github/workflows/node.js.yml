@@ -43,12 +43,10 @@ jobs:
       - name: Deploy site to Netlify
         uses: nwtgck/actions-netlify@v1
         with:
-          publish-dir: ./dist
-        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           
-          
+
   # Job to send Slack notifications
   notify:
     # Define the job dependencies
