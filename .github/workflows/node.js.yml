@@ -8,9 +8,7 @@ jobs:
 
   run-tests:
     # Runs on Ubuntu latest version
-
     runs-on: ubuntu-latest
-      
     # Steps to execute within the job
     steps:
       # Check out repository code
@@ -48,15 +46,13 @@ jobs:
         run: curl -X POST -d {} https://api.netlify.com/build_hooks/661ead9a036744482f207bc5
           
   # Job to send Slack notifications
-  notify:
+   notify:
     # Define the job dependencies
     needs: [run-tests, deploy]
     runs-on: ubuntu-latest
-
     if: ${{ always() }}
     steps:
       - name: Send Slack notification on success
-
         # Send a Slack notification if the tests and deployment are successful
         if: ${{ needs.run-tests.result == 'success' && needs.deploy.result == 'success' }}
         uses: slackapi/slack-github-action@v1.25.0
