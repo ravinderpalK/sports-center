@@ -31,7 +31,6 @@ const Appbar: React.FC = () => {
     </svg>;
 
   const classNames = (...classes: string[]): string => classes.filter(Boolean).join(' ');
-  // const {t} = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState(language); 
   console.log(currentLanguage)

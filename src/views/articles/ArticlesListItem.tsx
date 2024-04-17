@@ -1,5 +1,6 @@
 import React, { Suspense, useState } from "react";
 import ErrorBoundary from "../../components/ErrorBoundary";
+import { useTranslation } from "react-i18next";
 const ArticleDetails = React.lazy(() => import("./ArticleDetails"));
 
 
@@ -11,6 +12,8 @@ const ArticlesListitem = (props: any) => {
     return formattedDate;
   }
   const [isOpen, setIsOpen] = useState(false);
+  const {t} = useTranslation();
+
 
   return (
     <div key={article.id} className="my-2 lg:my-4 h-32 lg:h-44 bg-white trending-new-article">
@@ -21,7 +24,7 @@ const ArticlesListitem = (props: any) => {
           <div className="line-clamp-2">{article.summary}</div>
           <div className="lg:pt-2">{formatDate(article.date)}</div>
         </div>
-        <button onClick={() => setIsOpen(true)} className={`absolute bottom-1 right-3 text-xxs lg:text-sm font-semibold ${article.id}`}>Read More</button>
+        <button onClick={() => setIsOpen(true)} className={`absolute bottom-1 right-3 text-xxs lg:text-sm font-semibold ${article.id}`}>{t('readMore')}</button>
         <ErrorBoundary>
           <Suspense>
             {isOpen && (

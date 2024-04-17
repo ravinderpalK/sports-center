@@ -5,6 +5,7 @@ import LiveGames from "../live_games";
 import { usePreferencesDispatch, usePreferencesState } from "../../context/user_preferences/context";
 import { fetchPreferences } from "../../context/user_preferences/actions";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -17,6 +18,8 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const prefrencesDispatch = usePreferencesDispatch();
   const preferencesState = usePreferencesState();
+  const {t} = useTranslation();
+
   useEffect(() => {
     if (isAuthenticated) {
       (async () => {
@@ -42,7 +45,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="mx-auto w-16/17 h-5/6">
       <LiveGames />
-      <h2 ref={newsRef} className="font-bold text-lg lg:text-xl">Trending News</h2>
+      <h2 ref={newsRef} className="font-bold text-lg lg:text-xl">{t('trendingNews')}</h2>
       <div className="flex flex-col lg:flex-row my-2 h-5/6 ">
         <div className="w-full order-2 lg:order-1 lg:w-4/5 bg-gray-100 ">
           <Articles scrollToNewsDiv={scrollToTop} />
