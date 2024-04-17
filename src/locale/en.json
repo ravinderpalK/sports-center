@@ -1,0 +1,24 @@
+{
+  "Prefrences": {
+    "Prefrences": "Prefrences"
+  },
+  "translation": {
+    "cancelButton": "Cancel",
+    "AmericanFootball": "American Football",
+    "allNews": "All News",
+    "basketBall": "Basketball",
+    "date": "Date",
+    "favouriteSports": "Favourite Sports",
+    "favouriteTeams": "Favourite Teams",
+    "favourities": "Favourities",
+    "liveGames": "Live Games",
+    "projectTitle": "Sports Center",
+    "readMore": "Read More",
+    "saveButton": "Save",
+    "signin": "signin",
+    "signup": "signup",
+    "sortBy": "Sort By:",
+    "sport": "Sport",
+    "trendingNews": "Trending News"
+  }
+}
