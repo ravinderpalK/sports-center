@@ -7,7 +7,6 @@ import { SportsProvider } from "./context/sports/context"
 import { PreferencesProvider } from "./context/user_preferences/context"
 import "./i18";
 
-
 import * as Sentry from "@sentry/react";
 
 Sentry.init({
