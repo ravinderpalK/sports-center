@@ -32,6 +32,27 @@ jobs:
       #     npm install cypress cypress-json-results
       #     npx cypress run
 
+  docker:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build Docker image
+        run: |
+          docker build -f Dockerfile --target production -t raviinderpalsingh/sports-center-prod:latest .
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push raviinderpalsingh/sports-center-prod:latest
 
 
   # Job to deploy the app to production
