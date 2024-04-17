@@ -54,7 +54,6 @@ jobs:
         run: |
           docker push raviinderpalsingh/sports-center-prod:latest
 
-
   # Job to deploy the app to production
   deploy:
     needs: run-tests
