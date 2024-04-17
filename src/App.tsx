@@ -5,6 +5,7 @@ import { ArticlesProvider } from "./context/articles/context"
 import { TeamsProvider } from "./context/teams/context"
 import { SportsProvider } from "./context/sports/context"
 import { PreferencesProvider } from "./context/user_preferences/context"
+import "./i18";
 
 function App() {
   return (
